@@ -1,0 +1,4 @@
+20220728	10:46:57	1549e3f0-8b98-4f85-bc58-b0bf8af85be7	TypeError: filteredArray is not iterable
+20220728	10:49:00	f57d2ddc-56f9-48d7-a548-6019350ca296	TypeError: Found non-callable @@iterator
+20220728	10:49:23	51f334da-a76f-480d-a799-c470e818812b	TypeError: Found non-callable @@iterator
+20220728	10:49:45	f1706e83-f94f-4f32-9b97-8eab3e26123f	TypeError: Found non-callable @@iterator

@@ -1,15 +1,16 @@
 {
-  "name": "08tut",
+  "name": "nodebackend",
   "version": "1.0.0",
-  "description": "Express tutorial",
+  "description": "Node CRUD Operations Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server"
   },
-  "author": "Dave Gray",
+  "author": "Xander Mikalauskas",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "date-fns": "^2.23.0",
     "express": "^4.17.1",

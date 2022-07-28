@@ -1,12 +1,16 @@
 [
     {
         "id": 1,
-        "firstname": "Dave",
-        "lastname": "Gray"
+        "firstname": "Xander",
+        "lastname": "Mikalauskas",
+        "email": "ajmikalauskas@hotmail.com",
+        "password": "test"
     },
     {
         "id": 2,
         "firstname": "John",
-        "lastname": "Smith"
+        "lastname": "Mikalauskas",
+        "email": "johnmik35@hotmail.com",
+        "password": "test2"
     }
 ]
