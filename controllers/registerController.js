@@ -22,8 +22,17 @@ const handleNewUser = async (req,res) => {
     try {
         // hash the password -> 2nd param is the salt amount which makes it harder for hackers to hack.
         const hashedPassword = await bcrypt.hash(password, 10) 
+        const id = usersDB.users?.length ? usersDB.users[usersDB.users.length - 1].id + 1 : 1;
         // store the new user
-        const newUser = { "firstname": firstname, "lastname": lastname, "email": email, "password": hashedPassword}
+        const newUser = { 
+            "id": id,
+            "firstname": firstname, 
+            "lastname": lastname, 
+            "email": email, 
+            // on creation of new user they get basic roles, may get some later such as admin or other roles.
+            "roles": { "User": 2001 },  
+            "password": hashedPassword
+        }
         usersDB.setUsers([...usersDB.users, newUser]);
         // 1st param is the path to which code/text is written to; 2nd param is the JSON/code/text that is written to the file
         await fsPromises.writeFile(

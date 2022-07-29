@@ -26,9 +26,16 @@ const handleRefreshToken = (req, res) => {
         process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
             if(err || foundUser.email !== decoded.email) return res.sendStatus(403) //Forbidden
+            // add roles to accessToken, everytime a new accessToken is made anywhere in the code: here and in authController.js
+            const roles = Object.values(foundUser.roles);
             // create access token
             const accessToken = jwt.sign(
-                {"email": decoded.email},
+                {        
+                    "UserInfo": {
+                    "email": foundUser.email,
+                    "roles": roles,
+                  },
+                },
                 process.env.ACCESS_TOKEN_SECRET,
                 {expiresIn: '30s'}
             )
