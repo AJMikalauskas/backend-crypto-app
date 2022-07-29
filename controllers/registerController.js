@@ -17,7 +17,7 @@ const handleNewUser = async (req,res) => {
     if(!firstname || !lastname || !email || !password) return res.status(400).json({ 'message': 'All fields are required.'})
 
     // Check for duplicate emails in DB -> must use exec if using async/await --> see documentation for more info
-    const duplicate = await User.findOne({ email: email }).exec();
+    const duplicate = await User.findOne({ email }).exec();
     if(duplicate) return res.sendStatus(409); // Conflict error is a 409 
 
     try {

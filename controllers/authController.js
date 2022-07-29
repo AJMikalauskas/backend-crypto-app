@@ -1,16 +1,8 @@
 // Similar to useState() hook in react
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function (data) {
-    this.users = data;
-  },
-};
+const User = require('../model/User');
 const bcrypt = require("bcrypt");
-
 // JWT necessary imports
 const jwt = require("jsonwebtoken");
-const fsPromises = require("fs").promises;
-const path = require("path");
 
 const handleLogin = async (req, res) => {
   // Email and Password fields are required
@@ -18,10 +10,10 @@ const handleLogin = async (req, res) => {
   if (!email || !password)
     return res
       .status(400)
-      .json({ message: "Email and Password are required." });
+      .json({ 'message': "Email and Password are required." });
 
-  // The email has to already exist, else they can't login
-  const foundUser = usersDB.users.find((person) => person.email === email);
+  // The email has to already exist, else they can't login; logic in registerController.js and refreshTokenController.js
+  const foundUser = await User.findOne({ email }).exec();
   if (!foundUser) return res.sendStatus(401); // Unauthorized
 
   // evaluate password
@@ -48,25 +40,29 @@ const handleLogin = async (req, res) => {
     );
 
     // SAVING REFRESH TOKEN WITH CURRENT USER
+      // MongoDB format
+    foundUser.refreshToken = refreshToken;
+    const result = await foundUser.save();
+    console.log(result);
     // Filters out the user who is currently logging in
-    const otherUsers = usersDB.users.filter(
-      (person) => person.email !== foundUser.email
-    );
-    // Create a new user by using the foundUser yet also adding the refreshToken --> will allow us to invalidate user later
-    // based on logout functionality
-    const currentUser = { ...foundUser, refreshToken };
-    usersDB.setUsers([...otherUsers, currentUser]);
+    // const otherUsers = usersDB.users.filter(
+    //   (person) => person.email !== foundUser.email
+    // );
+    // // Create a new user by using the foundUser yet also adding the refreshToken --> will allow us to invalidate user later
+    // // based on logout functionality
+    // const currentUser = { ...foundUser, refreshToken };
+    // usersDB.setUsers([...otherUsers, currentUser]);
 
-    // Add updated usersDB to the users.json file
-    await fsPromises.writeFile(
-      path.join(__dirname, "..", "model", "users.json"),
-      JSON.stringify(usersDB.users)
-    );
+    // // Add updated usersDB to the users.json file
+    // await fsPromises.writeFile(
+    //   path.join(__dirname, "..", "model", "users.json"),
+    //   JSON.stringify(usersDB.users)
+    // );
     // Not available to JS if we send refreshToken as httpOnly cookie; maxAge is 1 day but in miliseconds.
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: "None",
-      secure: true,
+    //  secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
     // send accessToken via here as res.json({}) --> send to memory, not localStorage or cookies

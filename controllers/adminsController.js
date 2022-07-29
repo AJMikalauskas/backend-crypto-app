@@ -1,14 +1,18 @@
 
 // will end up hooking this up to MongoDB, but this is the dummy data for now
-const data = {
-    users: require("../model/users.json"),
-    setUsers: function (data) { this.users = data }
-}
-
+// const data = {
+//     users: require("../model/users.json"),
+//     setUsers: function (data) { this.users = data }
+// }
+//MongoDB Schema connection
+const Admin = require('../model/Admin');
 
 // Logic not fully complete for all CRUD operations yet...
-const getAllUsers = (req,res) => {
-    res.json(data.users);
+const getAllUsers = async (req,res) => {
+    // Finds all since no specification is in the find()
+    const admins = await Admin.find();
+    if(!admins) return res.status(204).json({'message': 'No Admins found.'});
+    res.json(admins);
 }
 
 const createNewUser = (req,res) => {

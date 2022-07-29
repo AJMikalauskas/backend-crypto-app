@@ -1,11 +1,8 @@
-const usersDB = {
-    users: require("../model/users.json"),
-    setUsers: function (data) { this.users = data }
-}
+const User = require("../model/User");
 
 const jwt = require('jsonwebtoken');
 
-const handleRefreshToken = (req, res) => {
+const handleRefreshToken = async (req, res) => {
     // Make sure we have cookies which will include the refreshToken --> optional chaining to check if cookie exists 
         // and if so tries to access jwt property
     const cookies = req.cookies;
@@ -15,8 +12,8 @@ const handleRefreshToken = (req, res) => {
     // Retieve the refreshToken, now that we know it's in the cookies
     console.log(cookies.jwt);
     const refreshToken = cookies.jwt;
-    // find user with the current refreshToken passed in 
-    const foundUser = usersDB.users.find(person => person.refreshToken === refreshToken)
+    // find user with the current refreshToken using MongoDB logic; done so in same format as registerController.js
+    const foundUser = await User.findOne({ refreshToken }).exec();
     if(!foundUser) return res.sendStatus(403); // Forbidden -> there should be no refreshToken if the user doesnt't have the refreshToken
     
     // evaluate jwt --> do through jwt.verify() method
