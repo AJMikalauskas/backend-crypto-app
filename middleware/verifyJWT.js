@@ -1,6 +1,4 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
-
 const verifyJWT = (req, res, next) => {
 
     // Send a 401 if the authHeader of the req headers authorization is falsy -> Can be lowercase and uppercase a/A for authorization

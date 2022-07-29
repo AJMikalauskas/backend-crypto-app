@@ -4,7 +4,6 @@ const usersDB = {
 }
 
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
 const handleRefreshToken = (req, res) => {
     // Make sure we have cookies which will include the refreshToken --> optional chaining to check if cookie exists 
