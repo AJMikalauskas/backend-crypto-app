@@ -1,16 +1,1 @@
-[
-    {
-        "id": 1,
-        "firstname": "Xander",
-        "lastname": "Mikalauskas",
-        "email": "ajmikalauskas@hotmail.com",
-        "password": "test"
-    },
-    {
-        "id": 2,
-        "firstname": "John",
-        "lastname": "Mikalauskas",
-        "email": "johnmik35@hotmail.com",
-        "password": "test2"
-    }
-]
+[]

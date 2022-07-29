@@ -177,3 +177,5 @@
 20220729	13:25:54	629d17b5-78f9-44b9-9078-7a07a250b108	POST	undefined	/login
 20220729	13:26:07	1d179a0a-cc9e-4acd-9a8e-621284c5c47b	GET	undefined	/users
 20220729	13:26:10	5c3d8c19-359e-4fc2-aeb9-3fff99b7c7fe	DELETE	undefined	/users
+20220729	15:42:54	39955978-8862-4c28-9f0a-f0993debffd7	POST	undefined	/register
+20220729	15:43:43	e80e33f0-77e8-44bc-a8e1-56dfac5656d2	POST	undefined	/register
