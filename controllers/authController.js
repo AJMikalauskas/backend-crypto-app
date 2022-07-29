@@ -50,7 +50,7 @@ const handleLogin = async (req,res) => {
             JSON.stringify(usersDB.users)
         );
         // Not available to JS if we send refreshToken as httpOnly cookie; maxAge is 1 day but in miliseconds.
-        res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000});
+        res.cookie('jwt', refreshToken, {httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000});
         // send accessToken via here as res.json({}) --> send to memory, not localStorage or cookies
         res.json({ accessToken });
         //res.json({ 'success': `User ${email} is logged in!`})

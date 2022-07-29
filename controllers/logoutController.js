@@ -6,7 +6,7 @@ const usersDB = {
 const fsPromises = require('fs').promises;
 const path = require('path');
 
-const handleLogout = (req, res) => {
+const handleLogout = async (req, res) => {
     // On Client, also delete the accessToken
 
     // Make sure we have cookies which will include the refreshToken --> optional chaining to check if cookie exists 
@@ -20,8 +20,9 @@ const handleLogout = (req, res) => {
     // find user with the current refreshToken passed in 
     const foundUser = usersDB.users.find(person => person.refreshToken === refreshToken)
     if(!foundUser)  {
-        res.clearCookie('jwt', {httpOnly: true});
-        return res.sendStatus(403); // Forbidden -> there should be no refreshToken if the user doesnt't have the refreshToken
+        // Make sure when clearing cookie that all options from previous cookie are in it except for maxAge
+        res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
+        return res.sendStatus(403); // Forbidden -> there should be no refreshToken if the user doesnt have the refreshToken
     }
 
     // Delete refreshToken in db
@@ -34,6 +35,9 @@ const handleLogout = (req, res) => {
         JSON.stringify(usersDB.users)
     );
 
-    
+     // If you set secure to true as another option, this adds more security; for https server, not for dev
+    res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
+    res.sendStatus(204); // Send No COntent Success Code as changes are only deletions
+
 }
 module.exports = { handleLogout }
