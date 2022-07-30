@@ -52,7 +52,7 @@ app.use('/logout', require('./routes/logout'));
 
 // Place the verifyJWT middleware here as the JWTs won't be created until auth is called, so can't even be used in any routes except for here
 app.use(verifyJWT)
-app.use('/users', require('./routes/api/users'));
+app.use('/admins', require('./routes/api/admins'));
 
 // 404 Pages handling
 app.all('*', (req, res) => {
