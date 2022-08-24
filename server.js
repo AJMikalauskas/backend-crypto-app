@@ -43,6 +43,9 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 app.use('/', require('./routes/root'));
+// for adding coins to db, and creating similar foreign key relationship as SQL does.
+app.use('/coins', require('./routes/coins'));
+
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/auth'));
 // refreshToken route -> will now receive a cookie and accessToken when user login/auth, can get new accessToken using this route

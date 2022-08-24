@@ -3,3 +3,23 @@
 20220728	10:49:23	51f334da-a76f-480d-a799-c470e818812b	TypeError: Found non-callable @@iterator
 20220728	10:49:45	f1706e83-f94f-4f32-9b97-8eab3e26123f	TypeError: Found non-callable @@iterator
 20220729	13:03:02	9427166a-eece-412c-8129-1c02088a006f	SyntaxError: Unexpected string in JSON at position 63
+20220805	12:26:29	68fb051d-39d9-4ea9-b038-b4457b365566	Error: Not allowed by CORS
+20220805	14:41:40	cef1598e-524b-48d9-9d04-265f39972b86	Error: Not allowed by CORS
+20220805	14:42:13	f4a7936c-3c7f-4063-8a95-e997c70d4104	Error: Not allowed by CORS
+20220805	14:42:43	fe0bcfbf-9818-4836-b8eb-18757944df4b	Error: Not allowed by CORS
+20220805	14:43:22	c567c5cf-67cc-4689-a538-f5dccbf0ac8b	Error: Not allowed by CORS
+20220805	14:43:47	800ab9e7-b946-40ea-9eed-a0114726c282	Error: Not allowed by CORS
+20220805	14:55:03	f69b71dd-2aa8-49b8-94fd-4742c51728ee	Error: Not allowed by CORS
+20220805	14:56:13	b37afa46-51c1-4dc2-bc25-e4ad1eb82558	Error: Not allowed by CORS
+20220805	14:57:28	140c4c7a-01a7-4a3a-9377-fbd8aa2e3c1b	Error: Not allowed by CORS
+20220805	14:57:56	652272cd-1542-4dce-b8e2-122cd3b6c2a0	Error: Not allowed by CORS
+20220805	14:58:26	5daa14d3-ad3c-4146-8fde-1869122a19fb	Error: Not allowed by CORS
+20220805	14:58:59	4751d2f1-bb67-404c-ac11-39125b79f3bc	Error: Not allowed by CORS
+20220805	14:59:22	acb9b129-07c4-4726-b13b-3c06e982bbaf	Error: Not allowed by CORS
+20220805	15:02:10	18f78f07-22ed-4e85-b812-9098587dd224	Error: Not allowed by CORS
+20220805	15:04:44	2b0387b2-1248-4637-ad87-d8d299ed5924	Error: Not allowed by CORS
+20220805	15:10:44	a7b963e4-2a4f-495a-b82e-06042805392f	Error: Not allowed by CORS
+20220805	15:14:56	4880a919-e802-44a3-b2e8-a997f084e22a	Error: Not allowed by CORS
+20220805	15:15:44	d91024b5-8473-4598-82ab-dd43751401fe	Error: Not allowed by CORS
+20220805	15:18:36	07e16f08-a474-475f-827e-86009c352fbc	Error: Not allowed by CORS
+20220805	15:19:37	227338a9-2480-4259-9fc9-24424f9d4f4a	Error: Not allowed by CORS

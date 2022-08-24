@@ -17,11 +17,14 @@ const handleLogin = async (req, res) => {
   if (!foundUser) return res.sendStatus(401); // Unauthorized
 
   // evaluate password
-  const match = bcrypt.compare(password, foundUser.password);
+  console.log(password);
+  console.log(foundUser.password);
+  const match = await bcrypt.compare(password, foundUser.password);
   // If the password matches, send success message, else, send a 401 unauthorized error code
   if (match) {
-    // define or add roles with access token, once the password is verified
-    const roles = Object.values(foundUser.roles);
+    console.log("passwords have matched");
+    // define or add roles with access token, once the password is verified -> to handle the null values received, use .filter(Boolean)
+    const roles = Object.values(foundUser.roles).filter(Boolean);
     // create JWTS here
     const accessToken = jwt.sign(
       {
@@ -31,12 +34,12 @@ const handleLogin = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30s" }
+      { expiresIn: "1200s" }
     );
     const refreshToken = jwt.sign(
       { email: foundUser.email },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "7d" }
     );
 
     // SAVING REFRESH TOKEN WITH CURRENT USER
@@ -63,10 +66,10 @@ const handleLogin = async (req, res) => {
       httpOnly: true,
       sameSite: "None",
     //  secure: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     // send accessToken via here as res.json({}) --> send to memory, not localStorage or cookies
-    res.json({ accessToken });
+    res.json({ roles, accessToken });
     //res.json({ 'success': `User ${email} is logged in!`})
   } else {
     res.sendStatus(401);
