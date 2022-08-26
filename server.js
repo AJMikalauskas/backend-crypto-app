@@ -14,7 +14,7 @@ const connectDB = require('./config/dbConn');
 const credentials = require('./middleware/credentials');
 const PORT = process.env.PORT || 3500;
 
-// Connect to MongoDB
+// Connect to MongoDB --> commit to backend proj
 connectDB();
 
 // custom middleware logger
