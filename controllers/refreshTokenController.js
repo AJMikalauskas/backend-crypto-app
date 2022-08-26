@@ -10,7 +10,7 @@ const handleRefreshToken = async (req, res) => {
     if(!cookies?.jwt) return res.sendStatus(401);
 
     // Retieve the refreshToken, now that we know it's in the cookies
-    console.log(cookies.jwt);
+    //console.log(cookies.jwt);
     const refreshToken = cookies.jwt;
     // find user with the current refreshToken using MongoDB logic; done so in same format as registerController.js
     const foundUser = await User.findOne({ refreshToken }).exec();
@@ -21,21 +21,22 @@ const handleRefreshToken = async (req, res) => {
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
-            if(err || foundUser.email !== decoded.email) return res.sendStatus(403) //Forbidden
+            if(err || foundUser.email !== decoded.email) return res.sendStatus(403); //Forbidden
             // add roles to accessToken, everytime a new accessToken is made anywhere in the code: here and in authController.js
             const roles = Object.values(foundUser.roles);
             // create access token
             const accessToken = jwt.sign(
                 {        
                     "UserInfo": {
-                    "email": foundUser.email,
+                    "email": decoded.email,
                     "roles": roles,
                   },
                 },
                 process.env.ACCESS_TOKEN_SECRET,
                 {expiresIn: '1200s'}
             )
-            res.json({ accessToken })
+            console.log(accessToken);
+            res.json({ roles, accessToken })
         }
     )
 

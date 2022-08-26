@@ -39,6 +39,7 @@ const handleLogin = async (req, res) => {
     const refreshToken = jwt.sign(
       { email: foundUser.email },
       process.env.REFRESH_TOKEN_SECRET,
+      // Can test expired refreshToken with login/logout features using less time such as 15s --> due to RequiredAuth component
       { expiresIn: "7d" }
     );
 
@@ -65,7 +66,7 @@ const handleLogin = async (req, res) => {
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: "None",
-    //  secure: true,
+      secure: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     // send accessToken via here as res.json({}) --> send to memory, not localStorage or cookies
